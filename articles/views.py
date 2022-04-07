@@ -30,3 +30,18 @@ def detail(request, pk):
         'article' : article
     }
     return render(request, 'articles/detail.html', context)
+
+def update(request, pk):
+    article = Article.objects.get(pk=pk)
+    if request.method == 'POST':
+        form = ArticleForm(request.POST, instance=article)
+        if form.is_valid():
+            article = form.save()
+            return redirect('articles:detail', article.pk)
+    else:
+        form = ArticleForm(instance=article)
+    context = {
+        'article' : article,
+        'form' : form,
+    }
+    return render(request, 'articles/update.html', context)
