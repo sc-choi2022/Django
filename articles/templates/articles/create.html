@@ -1,0 +1,16 @@
+<h1>CREATE</h1>
+<hr>
+<form action="{% url 'articles:create' %}" method="POST">
+  {% csrf_token %}
+  <div>
+    {{ form.title.errors}}
+    {{ form.title.label_tag }}
+    {{ form.title }}
+  </div>
+  <div>
+    {{ form.content.errors}}
+    {{ form.content.labe_tag }}
+    {{ form.content }}
+  </div>
+  <input type="submit" value="submit">
+</form>
