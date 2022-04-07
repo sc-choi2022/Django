@@ -16,10 +16,17 @@ def create(request):
         # validation
         if form.is_valid():
             article = form.save()
-            return redirect('articles:index')
+            return redirect('articles:detail')
     else:
         form = ArticleForm()
     context = {
         'form' : form,
     }
     return render(request, 'articles/create.html', context)
+
+def detail(request, pk):
+    article = Article.objects.get(pk=pk)
+    context = {
+        'article' : article
+    }
+    return render(request, 'articles/detail.html', context)
