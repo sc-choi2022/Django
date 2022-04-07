@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import redirect, render
 from .models import Article
 from .forms import ArticleForm
 
@@ -16,7 +16,7 @@ def create(request):
         # validation
         if form.is_valid():
             article = form.save()
-            return
+            return redirect('articles:index')
     else:
         form = ArticleForm()
     context = {
