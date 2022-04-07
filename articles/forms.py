@@ -28,3 +28,8 @@ class ArticleForm(forms.ModelForm):
             'required' : 'Please enter the content'
         }
     )
+
+    class Meta:
+        model = Article
+        fields = '__all__'
+        # exclude = ('title,)
